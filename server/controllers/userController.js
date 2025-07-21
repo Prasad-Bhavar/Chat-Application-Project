@@ -1,10 +1,10 @@
-import cloudinary from "../lib/cloudinary";
-import { generateToken } from "../lib/utils";
-import User from "../models/user";
+import cloudinary from "../lib/cloudinary.js";
+import { generateToken } from "../lib/utils.js";
+import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 //Signup a new USer\
-export const signup = async () => {
-  const { fullName, email, password, bio } = requestAnimationFrame.body;
+export const signup = async (req,res) => {
+  const { fullName, email, password, bio } = req.body;
   try {
     if (!fullName || !email || !password || !bio) {
       return res.json({ success: false, message: "Missing Details" });
@@ -32,7 +32,7 @@ export const signup = async () => {
       message: "Account created sucessfully!",
     });
   } catch (error) {
-    console.log(error.message);
+    console.log("signup error",error.message);
     res.json({ success: false, message: error.message });
   }
 };
@@ -58,7 +58,7 @@ export const login = async (req, res) => {
       message: "Login sucessfully!",
     });
   } catch (error) {
-    console.log(error.message);
+    console.log("login error",error.message);
     res.json({ success: false, message: error.message });
   }
 };

@@ -5,10 +5,16 @@ import http from "http";
 import { connectDB } from "./lib/db.js";
 import userRouter from "./routes/usesRoutes.js";
 import messageRouter from "./routes/messageRoutes.js";
-import { server } from "socket.io";
+import { Server } from "socket.io";
 
 const app = express();
 const server = http.createServer(app); //http server is used bcoz it support socket.io
+
+// Client connects with userId.
+// Server saves: { userId: socket.id }.
+// Server broadcasts: all current online userIds.
+// Client disconnects → remove from map.
+// Broadcast updated list again.
 
 //initialize the socket.io server
 export const io = new Server(server, {
