@@ -14,6 +14,7 @@ const messageSchema = new mongoose.Schema(
     },
     text: { type: String },
     seen: { type: Boolean, default: false },
+    image:{type:String}
   },
   { timestamps: true } //for every new data inserted time and date will be added automaticaly
 );
